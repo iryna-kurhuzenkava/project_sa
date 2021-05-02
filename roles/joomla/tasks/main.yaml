@@ -14,7 +14,7 @@
   tags:
     php
 
- name: PHP. Install additional packages to Centos
+- name: PHP. Install additional packages to Centos
   yum:
     name: "{{ yum_additional_packages }}"
     state: present

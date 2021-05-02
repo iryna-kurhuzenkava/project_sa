@@ -3,12 +3,18 @@
   yum:
     name: "{{ yum_http_packages }}"
     state: present
+  become: yes
+  tags:
+    web
 
 - name: Nginx. Enable and start service on Centos
   service:
     name: nginx
     state: started
     enabled: yes
+  become: yes
+  tags:
+    web
  
 #- name: HTTPS. Enable firewall port on Centos
 #  firewalld:

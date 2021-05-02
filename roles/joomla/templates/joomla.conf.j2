@@ -1,9 +1,12 @@
 server {
     listen 80;
     listen [::]:80;
-    root /var/www/html/joomla;
-    index  index.php index.html index.htm;
     server_name  joomla.sa;
+    root {{ joomla_dir }};
+    index index.php index.html index.htm;
+
+    access_log /var/log/nginx/joomla.sa_access_log;
+    error_log /var/log/nginx/joomla.sa_error_log;
 
     client_max_body_size 100M;
     autoindex off;

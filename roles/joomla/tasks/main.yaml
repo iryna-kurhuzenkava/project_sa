@@ -92,6 +92,8 @@
   file: 
     path: "{{ joomla_dir }}"
     state: directory
+    owner: nginx
+    mode: 777
   become: yes
   tags:
     joomla_install
@@ -113,7 +115,6 @@
     dest: "{{ nginx_config_path }}"
   notify:
     - Restart nginx
-    - Restart mariadb
   become: yes
   tags:
     joomla_install

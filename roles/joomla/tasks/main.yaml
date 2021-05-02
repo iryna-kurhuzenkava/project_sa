@@ -91,7 +91,7 @@
 - name: Joomla install. Create joomla dir
   file: 
     path: "{{ joomla_dir }}"
-    state: present
+    state: directory
   become: yes
   tags:
     joomla_install

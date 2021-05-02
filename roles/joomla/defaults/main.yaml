@@ -19,6 +19,12 @@ yum_additional_packages:
   - php-bcmath 
   - php-json
 
+
+mariadb_root_password: ""
+mariadb_database: "joomla"
+mariadb_user: 
+  - { name: "joomla", password: "joomla" }
+
 nginx_config_path: "/etc/nginx/conf.d/joomla.conf"
   
 

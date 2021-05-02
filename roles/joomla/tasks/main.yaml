@@ -37,7 +37,32 @@
     php 
 
 
+- name: Joomla_DB. Create database
+  mysql_db:
+    name: "{{ item.name }}"
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    state: present
+  with_items: "{{ mariadb_database }}"
+  register: db_creation
+  become: yes
+  tags: 
+    joomla_db
 
+- name: Joomla_DB. Create user
+  mysql_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    host: "localhost"
+    priv: "{{ mariadb_database }}.*:ALL"
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    state: present
+  no_log: true
+  with_items: "{{ mariadb_user }}"
+  become: yes
+  tags: 
+    joomla_db
 
 # - name: Jenkins-master. Add docker repo to Centos
 #   get_url:

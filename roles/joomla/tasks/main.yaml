@@ -36,18 +36,22 @@
   tags:
     php 
 
+- name: Joomla_DB. Install MySQL-python
+  yum:
+    name: MySQL-python
+    state: present
+  become: yes
+  tags:
+    joomla_db
+    
 - name: Joomla_DB. Install PyMySQL
   pip:
     name: PyMySQL
     executable: pip3
-  notify:
-    - mariadb restart
   become: yes
   tags: 
     joomla_db
     
- 
-
 - name: Joomla_DB. Create database
   mysql_db:
     encoding: utf8

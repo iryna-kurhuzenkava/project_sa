@@ -112,7 +112,8 @@
     src: joomla.conf.j2
     dest: "{{ nginx_config_path }}"
   notify:
-    - Restart nginx     
+    - Restart nginx
+    - Restart mariadb
   become: yes
   tags:
     joomla_install

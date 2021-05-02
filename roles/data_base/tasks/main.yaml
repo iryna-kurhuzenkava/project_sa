@@ -1,7 +1,7 @@
 ---
 - name: MariaDB. Install packages to Centos
   yum:
-    name: mariadb-server mariadb
+    name: mariadb-server 
     state: present
   become: yes
   tags:

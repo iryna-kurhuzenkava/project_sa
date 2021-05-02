@@ -2,6 +2,6 @@
 - hosts: localhost
   roles:
     - webserver
-#    - data_base
+    - data_base
 #    - joomla
 

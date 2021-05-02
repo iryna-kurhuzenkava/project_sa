@@ -82,16 +82,16 @@
 
 - name: Joomla install. Add joomla package
   get_url:
-    url: {{ url_package }}
-    dest: {{ archive_dir }}
+    url: "{{ url_package }}"
+    dest: "{{ archive_dir }}"
   become: yes
   tags:
     joomla_install
 
 - name: Joomla install. Unarchive joomla package
   unarchive:
-    src: {{ archive_dir }}
-    dest: {{ joomla_dir }}
+    src: "{{ archive_dir }}"
+    dest: "{{ joomla_dir }}"
     owner: nginx
     mode: 777
   become: yes

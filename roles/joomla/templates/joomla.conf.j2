@@ -1,29 +1,42 @@
 server {
-    listen 80;
-    listen [::]:80;
-    server_name  joomla.sa;
-    root {{ joomla_dir }};
-    index index.php index.html index.htm;
+        listen 80;
+        server_name joomla.sa;
+        server_name_in_redirect off;
 
-    access_log /var/log/nginx/joomla.sa_access_log;
-    error_log /var/log/nginx/joomla.sa_error_log;
+        access_log /var/log/nginx/joomla.access_log;
+        error_log /var/log/nginx/joomla.error_log info;
 
-    client_max_body_size 100M;
-    autoindex off;
-    location / {
-        try_files $uri $uri/ /index.php?$args;
-    }
+        root {{ joomla_dir }};
+        index index.php index.html index.htm default.html default.htm;
+        # Support Clean (aka Search Engine Friendly) URLs
+        location / {
+                try_files $uri $uri/ /index.php?$args;
+        }
 
-    # deny running scripts inside writable directories
-    location ~* /(images|cache|media|logs|tmp)/.*.(php|pl|py|jsp|asp|sh|cgi)$ {
-      return 403;
-      error_page 403 /403_error.html;
-    }
+        # add global x-content-type-options header
+        add_header X-Content-Type-Options nosniff;
 
-    location ~ .php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
+        # deny running scripts inside writable directories
+        location ~* /(images|cache|media|logs|tmp)/.*\.(php|pl|py|jsp|asp|sh|cgi)$ {
+                return 403;
+                error_page 403 /403_error.html;
+        }
+
+        location ~ \.php$ {
+            fastcgi_pass  127.0.0.1:9000;
+            fastcgi_index index.php;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include /etc/nginx/fastcgi.conf;
+        }
+
+        # caching of files 
+        location ~* \.(ico|pdf|flv)$ {
+                expires 1y;
+        }
+
+        location ~* \.(js|css|png|jpg|jpeg|gif|swf|xml|txt)$ {
+                expires 14d;
+        }
+
 }

@@ -1,7 +1,12 @@
 server {
-    listen 80;
-    server_name joomla.site;
-    root /var/www/html/joomla.site;
+   listen       80 default_server;
+   listen       [::]:80 default_server;
+   server_name  joomla.site;
+   root         /var/www/html/joomla.site;
+        
+#    listen 80;
+#    server_name joomla.site;
+#    root /var/www/html/joomla.site;
 
     index index.html index.htm index.php;
 

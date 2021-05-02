@@ -40,9 +40,13 @@
   pip:
     name: PyMySQL
     executable: pip3
+  notify:
+    - mariadb restart
   become: yes
   tags: 
     joomla_db
+    
+ 
 
 - name: Joomla_DB. Create database
   mysql_db:

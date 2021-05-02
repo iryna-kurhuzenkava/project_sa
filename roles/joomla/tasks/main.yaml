@@ -37,8 +37,9 @@
     php 
 
 - name: Joomla_DB. Install PyMySQL
-  pip3:
+  pip:
     name: PyMySQL
+    executable: pip3
   become: yes
   tags: 
     joomla_db

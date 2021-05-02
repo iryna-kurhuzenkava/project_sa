@@ -46,10 +46,10 @@
 
 - name: Joomla_DB. Create database
   mysql_db:
-    name: "{{ mariadb_database }}"
     encoding: utf8
     login_user: root
     login_password: "{{ mariadb_root_password }}"
+    name: "{{ mariadb_database }}"
     state: present
   register: db_creation
   become: yes

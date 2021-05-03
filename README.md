@@ -1,4 +1,4 @@
-## my project
+## My project
 
 Project's reporter: Kurhuzenkava Iryna
 
@@ -19,7 +19,7 @@ Github [repository](https://github.com/iryna-kurhuzenkava/project_sa/)
 #
 ![Image 1](schema.png)
 #
-Technologies which were used in project
+## Technologies which were used in project
 
 Orchestration: Jenkins
 

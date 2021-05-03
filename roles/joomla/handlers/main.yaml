@@ -5,8 +5,8 @@
     state: restarted
   become: yes
     
-- name: Restart mariadb
-  service:
-    name: mariadb
-    state: restarted 
-  become: yes
+#- name: Restart mariadb
+#  service:
+#    name: mariadb
+#    state: restarted 
+#  become: yes

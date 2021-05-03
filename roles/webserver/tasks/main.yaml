@@ -9,7 +9,7 @@
 
 - name: Nginx. Enable and start service on Centos
   service:
-    name: nginx
+    name: httpd
     state: started
     enabled: yes
   become: yes

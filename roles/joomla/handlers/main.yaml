@@ -1,7 +1,7 @@
 ---
-- name: Restart nginx
+- name: Restart apache
   service:
-    name: nginx
+    name: httpd
     state: restarted
   become: yes
     

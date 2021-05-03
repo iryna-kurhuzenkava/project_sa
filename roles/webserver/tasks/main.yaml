@@ -1,13 +1,21 @@
 ---
-- name: Nginx. Install packages to Centos
+- name: HTTPD. Install packages to Centos
   yum:
     name: "{{ yum_http_packages }}"
     state: present
   become: yes
   tags:
     web
+ 
+- name: HTTPD. Remove welcome file
+  file:
+    path: "/etc/httpd/conf.d/welcome.conf"
+    state: absent
+  become: yes
+  tags:
+    web
 
-- name: Nginx. Enable and start service on Centos
+- name: HTTPD. Enable and start service on Centos
   service:
     name: httpd
     state: started

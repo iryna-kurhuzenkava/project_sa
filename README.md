@@ -2,7 +2,7 @@
 
 Project's reporter: Kurhuzenkava Iryna
 
-Group number: m-sa2-16-21
+Group number: md-sa2-16-21
 
 ## Description of application for deployment
 

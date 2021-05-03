@@ -92,7 +92,7 @@
   file: 
     path: "{{ joomla_dir }}"
     state: directory
-    owner: nginx
+    owner: apache
     mode: 777
   become: yes
   tags:
@@ -102,22 +102,24 @@
   unarchive:
     src: "{{ archive_dir }}"
     dest: "{{ joomla_dir }}"
-    owner: nginx
+    owner: apache
     mode: 777
-  become: yes
-  tags:
-    joomla_install
-
-
-- name:  Joomla install. Copy nginx config
-  template:
-    src: joomla.conf.j2
-    dest: "{{ nginx_config_path }}"
   notify:
-    - Restart nginx
+    - Restart apache
   become: yes
   tags:
     joomla_install
+
+
+#- name:  Joomla install. Copy nginx config
+#  template:
+#    src: joomla.conf.j2
+#    dest: "{{ nginx_config_path }}"
+#  notify:
+#    - Restart apache
+#  become: yes
+#  tags:
+#    joomla_install
 
 
       

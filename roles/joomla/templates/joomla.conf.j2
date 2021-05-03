@@ -1,42 +1,20 @@
 server {
-   listen       80 default_server;
-   listen       [::]:80 default_server;
-   server_name  joomla.site;
-   root         /var/www/html/joomla.site;
-        
-#    listen 80;
-#    server_name joomla.site;
-#    root /var/www/html/joomla.site;
-
+    listen 80;
+    listen [::]:80;
+    server_name  joomla.site www.joomla.site;
+    root /var/www/html/joomla.site;
     index index.html index.htm index.php;
 
-    charset utf-8;
+    access_log /var/log/nginx/joomla.site_access_log;
+    error_log /var/log/nginx/joomla.site_error_log;
 
-    access_log /var/log/nginx/joomla.site.access.log;
-    error_log /var/log/nginx/joomla.site.error.log info;
-
-    location / {
-        try_files $uri $uri/ /index.php?$args;
-    }
-
-    location ~* /(images|cache|media|logs|tmp)/.*\.(php|pl|py|jsp|asp|sh|cgi)$ {
-        return 403;
-        error_page 403 /403_error.html;
-    }
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
-
-    location ~ \.php$ {
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    }
-
-    location ~ /\.(?!well-known).* {
-        deny all;
+    
+    location ~* ^.+\.(jpg|jpeg|gif|png|css|zip|tgz|gz|rar|bz2|doc|docx|xls|xlsx|exe|pdf|ppt|tar|wav|bmp|rtf|js)$ {
+            expires modified +1w;
     }
 }
+
+
+
+
+

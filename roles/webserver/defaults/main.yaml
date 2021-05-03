@@ -1,7 +1,7 @@
 ---
 yum_http_packages:
   - epel-release
-  - nginx
+  - httpd
 
 
   
